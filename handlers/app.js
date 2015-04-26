@@ -2,7 +2,7 @@
  * Application handlers.
  */
 
-var ok = function (res, req) {
+var ok = function (req, res) {
   res.set('Content-Type', 'text/plain');
   res.send(200, 'ok');
 };
