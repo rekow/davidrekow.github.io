@@ -1,5 +1,5 @@
 /**
- * Basic 'ok' handler.
+ * 'ok' service.
  */
 
 module.exports = function (req, res) {

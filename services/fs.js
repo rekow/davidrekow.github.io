@@ -14,7 +14,7 @@ module.exports = {
     });
 
     file.on('error', function (err) {
-      file.end(err);
+      res.end(err);
     });
   }
 };

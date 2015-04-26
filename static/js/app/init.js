@@ -5,7 +5,7 @@
 (function () {
   window.track = function (event, data) {
     var url;
-    data = typeof data !== 'string' ? btoa(JSON.stringify(data)) : data;
+    data = btoa(typeof data !== 'string' ? JSON.stringify(data) : data);
     url = '/_api/track?event=' + encodeURIComponent(event) + '&data=' + encodeURIComponent(data);
     new Image().src = url;
   };

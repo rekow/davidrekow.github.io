@@ -2,14 +2,16 @@
  * Application handlers.
  */
 
-var ok = require('./ok');
-
 module.exports = {
   // Appengine admin routes.
-  '/_ah/health': ok,
-  '/_ah/start': ok,
+  '/_ah/health': function (req, res) {
+    this.ok(req, res);
+  },
+  '/_ah/start': function (req, res) {
+    this.ok(req, res);
+  },
   '/_ah/stop': function (req, res) {
-    ok(req, res);
+    this.ok(req, res);
     process.exit();
   }
 };

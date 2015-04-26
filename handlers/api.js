@@ -2,9 +2,6 @@
  * API Handlers.
  */
 
-var ok = require('./ok'),
-  url = require('url');
-
 module.exports = {
   '/template/:view': function (req, res) {
     var view = req.params.view;
@@ -29,11 +26,11 @@ module.exports = {
 
       data.ip = data.ip || req.ip;
       this.track(req.query.event, data, res);
-      ok(req, res);
+      this.ok(req, res);
     },
     post: function (req, res) {
       this.track(req.body.event, req.body.data, res);
-      ok(req, res);
+      this.ok(req, res);
     }
   }
 };

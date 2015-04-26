@@ -4,7 +4,8 @@
 
 var context = {
   track: require('./services/track'),
-  fs: require('./services/fs')
+  fs: require('./services/fs'),
+  ok: require('./services/ok')
 };
 
 module.exports = function (handler) {
