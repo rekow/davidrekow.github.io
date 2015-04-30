@@ -1,20 +1,25 @@
 /**
- * Filesystem service.
+ * @file Filesystem service.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 var fs = require('fs');
 
 module.exports = {
-  read: function (path, res, mime) {
+  read: function (path, stream) {
     var file = fs.createReadStream(path);
 
-    file.on('open', function () {
-      res.set('Content-Type', mime || 'text/plain');
-      file.pipe(res);
+    file.on('error', function (err) {
+      stream.end(err);
     });
 
-    file.on('error', function (err) {
-      res.end(err);
+    file.on('open', function () {
+      file.pipe(stream);
     });
+  },
+
+  readSync: function (path) {
+    return fs.readFileSync(path, 'utf8');
   }
 };

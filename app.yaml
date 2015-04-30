@@ -7,14 +7,9 @@ manual_scaling:
 
 handlers:
 
-- url: /(.*\.(html|css|js))
+- url: /(.*\.(css|js))
   static_files: static/\1
-  upload: static/(.*\.(html|css|js))
-
-- url: /
-  static_files: static/index.html
-  upload: static/index.html
+  upload: static/(.*\.(css|js))
 
 - url: /.*
-  script: app.js
-  login: required
+  script: dynamic

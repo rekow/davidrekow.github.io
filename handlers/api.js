@@ -1,10 +1,17 @@
 /**
- * API Handlers.
+ * @file API Handlers.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
+
+var template = require('../services/template');
 
 module.exports = {
   '/template/:view': function (req, res) {
     var view = req.params.view;
+
+    console.log('::::::::::::::::::::::APPENGINE REQUEST OBJECT');
+    console.log('%j', req.appengine || {});
 
     this.track('APIRequest', {
       now: +(new Date()),
@@ -13,7 +20,8 @@ module.exports = {
       resource: view
     }, res);
 
-    this.fs.read('./views/' + view + '.html', res);
+    res.set('Content-Type', 'text/plain');
+    template(view, true).pipe(res);
   },
 
   '/track': {

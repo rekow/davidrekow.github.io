@@ -1,5 +1,7 @@
 /**
- * Application handlers.
+ * @file Application handlers.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 module.exports = {
@@ -13,5 +15,12 @@ module.exports = {
   '/_ah/stop': function (req, res) {
     this.ok(req, res);
     process.exit();
+  },
+
+  // Application routes.
+  '/': function (req, res) {
+    res.status(200);
+    res.set('Content-Type', 'text/html');
+    this.render('index').pipe(res);
   }
 };

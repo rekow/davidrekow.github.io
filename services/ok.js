@@ -1,5 +1,7 @@
 /**
- * 'ok' service.
+ * @file 'ok' service.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 module.exports = function (req, res) {

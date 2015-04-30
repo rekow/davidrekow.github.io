@@ -1,5 +1,7 @@
 /**
- * Analytics service.
+ * @file Analytics service.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 var gcloud = require('gcloud')({

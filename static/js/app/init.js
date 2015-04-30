@@ -1,12 +1,20 @@
 /**
- * Client app init - sends initial analytics and sets up deferred loading.
+ * @file Client app init.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
-(function () {
-  window.track = function (event, data) {
-    var url;
-    data = btoa(typeof data !== 'string' ? JSON.stringify(data) : data);
-    url = '/_api/track?event=' + encodeURIComponent(event) + '&data=' + encodeURIComponent(data);
-    new Image().src = url;
-  };
-})();
+goog.provide('init');
+
+/**
+ * @expose
+ * @param {string} event
+ * @param {Object} data
+ */
+window.track = function (event, data) {
+  data = data || {};
+  data.now = data.now || +(new Date());
+  data.resource = data.resource || window.location.href;
+  new Image().src = '/_api/track?event=' + encodeURIComponent(event) +
+    '&data=' + encodeURIComponent(btoa(JSON.stringify(data)));
+};

@@ -1,5 +1,7 @@
 /**
- * Route construction utility.
+ * @file Route construction utility.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 var wrap_handler = require('./handler');

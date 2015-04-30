@@ -13,7 +13,7 @@
  * @author David Rekow
  * @license MIT
  * @version 1.0.0
- * @copyright David Rekow 2015
+ * @copyright David Rekow 2012-2015
  */
 
 (function() {
@@ -27,6 +27,7 @@
     macro: /\{\{\s*?(\s*?([^\(]+))\(([^\)]*?)\)\s*?\}\}(?:([\s\S.]+)\{\{\s*?\/\s*?(?:\1|\2)\}\})?/g,
     section: /\{\{\s*?(#(.+?))\s*?\}\}([\s\S]*?)\{\{\s*?\/\1?\2\s*?\}\}/g,
     val: /\{\{\s*?([=%])\s*?(.+?)\s*?\}\}/g,
+    quoted: /^('|")(?:.*?)\1$/,
     triml: /^\s+/,
     trimr: /\s+$/,
   };
@@ -92,13 +93,14 @@
         return templates[name];
       }
     }
-    return cb && cb(templates[name]);
+    return cb(templates[name]);
   };
 
   macros = {};
   MACRO = {
     load: load,
-    scrub: scrub
+    scrub: scrub,
+    resolve: get_value
   };
 
   // Registers or retrieves a macro.
@@ -111,8 +113,12 @@
       return;
     }
     if (fn && typeof fn === 'function') {
-      macros[name] = function(args) {
-        return fn.apply(MACRO, args);
+      macros[name] = function(ctx, args) {
+        var html;
+        MACRO.scope = ctx;
+        html = fn.apply(MACRO, args);
+        MACRO.scope = null;
+        return html;
       };
     }
     return macros[name];
@@ -143,7 +149,9 @@
         return include(tpl, ctx, cb);
       });
     } else {
-      tpl.parsed = tpl.t;
+      tpl.parsed = tpl.t.replace(RE.section, function (_, __, name, content) {
+        return content;
+      });
       return do_render(tpl, ctx, false, cb);
     }
   };
@@ -220,14 +228,16 @@
     tpl.t = tpl.parsed;
     html = render(tpl.t, ctx).replace(RE.macro, function(_, __, _name, params, def) {
       var m = t.macro(_name),
-        args = [];
+        args = [],
+        param;
       params = trim(params.split(','));
       if (m) {
         for (var i = 0; i < params.length; i++) {
-          args.push(get_value(ctx, params[i]));
+          param = params[i];
+          args.push(RE.quoted.test(param) ? param.slice(1, -1) : get_value(ctx, param));
         }
         try {
-          return m(args);
+          return m(ctx, args);
         } catch (e) {
           console.log('[t+] Macro error: ', _name, e);
         }
@@ -261,7 +271,6 @@
   // Configure custom template loader.
   t.config = function(load, put) {
     if (!put) {
-      if (!(load.load && load.put)) return false;
       put = load.put;
       load = load.load;
     }

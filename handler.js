@@ -1,11 +1,15 @@
 /**
- * Base handler context.
+ * @file Base handler context.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 var context = {
-  track: require('./services/track'),
   fs: require('./services/fs'),
-  ok: require('./services/ok')
+  ok: require('./services/ok'),
+  html: require('./services/html'),
+  track: require('./services/track'),
+  render: require('./services/render')
 };
 
 module.exports = function (handler) {

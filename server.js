@@ -1,5 +1,7 @@
 /**
- * Base application server.
+ * @file Base application server.
+ * @author <a href="http://davidrekow.com">David Rekow</a>.
+ * @copyright 2015
  */
 
 var app = require('./servers/app'),
