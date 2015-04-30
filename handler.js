@@ -7,7 +7,6 @@
 var context = {
   fs: require('./services/fs'),
   ok: require('./services/ok'),
-  html: require('./services/html'),
   track: require('./services/track'),
   render: require('./services/render')
 };
