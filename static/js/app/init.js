@@ -4,8 +4,6 @@
  * @copyright 2015
  */
 
-goog.provide('init');
-
 /**
  * @expose
  * @param {string} event

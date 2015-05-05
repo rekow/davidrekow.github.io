@@ -4,3 +4,6 @@
  * @copyright 2015
  */
 
+goog.require('$');
+
+goog.provide('event');
