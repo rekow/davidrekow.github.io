@@ -5,7 +5,7 @@
  */
 
 var fs = require('./fs'),
-  t = require('../static/js/lib/t.js'),
+  t = require_asset('js', 'lib/t'),
   TemplateStream = require('../streams/TemplateStream'),
 
   cache = {};

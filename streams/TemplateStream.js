@@ -6,7 +6,7 @@
 
 var path = require('path'),
   streams = require('./'),
-  t = require('../static/js/lib/t'),
+  t = require_asset('js', 'lib/t'),
   TEMPLATE_ROOT = path.resolve(__dirname, '../views'),
   TemplateStream;
 

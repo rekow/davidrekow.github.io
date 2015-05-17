@@ -4,17 +4,22 @@
  * @copyright 2015
  */
 
-var app = require('./servers/app'),
-  api = require('./servers/api'),
-  appHandlers = require('./handlers/app'),
-  apiHandlers = require('./handlers/api'),
-  route = require('./route');
+var app, api, appHandlers, apiHandlers, route;
+
+// Set up dependency injection before anything else.
+require('./di');
+
+// Set up servers and routing.
+app = require('./servers/app');
+api = require('./servers/api');
+appHandlers = require('./handlers/app');
+apiHandlers = require('./handlers/api');
+route = require('./route');
 
 route(app, appHandlers);
 route(api, apiHandlers);
-
 app.use('/_api', api);
 
+// Start app server
 app.listen(8080, '0.0.0.0');
-
 console.log('Listening on port 8080');

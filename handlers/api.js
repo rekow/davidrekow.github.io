@@ -10,16 +10,7 @@ module.exports = {
   '/template/:view': function (req, res) {
     var view = req.params.view;
 
-    console.log('::::::::::::::::::::::APPENGINE REQUEST OBJECT');
-    console.log('%j', req.appengine || {});
-
-    this.track('APIRequest', {
-      now: +(new Date()),
-      service: 'template',
-      ip: req.ip,
-      resource: view
-    }, res);
-
+    console.log('Template requested: %s', view);
     res.set('Content-Type', 'text/plain');
     template(view, true).pipe(res);
   },
