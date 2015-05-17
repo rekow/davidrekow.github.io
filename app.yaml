@@ -7,6 +7,7 @@ manual_scaling:
 
 env_variables:
   assets_dir: assets
+  api_prefix: _api
 
 handlers:
 

@@ -18,7 +18,7 @@ route = require('./route');
 
 route(app, appHandlers);
 route(api, apiHandlers);
-app.use('/_api', api);
+app.use('/' + process.env.api_prefix, api);
 
 // Start app server
 app.listen(8080, '0.0.0.0');
