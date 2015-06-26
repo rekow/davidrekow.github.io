@@ -20,6 +20,10 @@ module.exports = {
   },
 
   readSync: function (path) {
-    return fs.readFileSync(path, 'utf8');
+    try {
+      return fs.readFileSync(path, 'utf8');
+    } catch (e) {
+      return fs.readFileSync('/app/views/static/404.html', 'utf8');
+    }
   }
 };

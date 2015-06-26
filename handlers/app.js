@@ -22,5 +22,14 @@ module.exports = {
     res.status(200);
     res.set('Content-Type', 'text/html');
     this.render('index').pipe(res);
+  },
+
+  '/:view': function (req, res) {
+    res.status(200);
+    res.set('Content-Type', 'text/html');
+    this.render(req.params.view, {
+      header: true,
+      footer: false
+    }).pipe(res);
   }
 };

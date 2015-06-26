@@ -41,7 +41,18 @@ _match = Element.prototype.matches ||
   Element.prototype.webkitMatchesSelector ||
   Element.prototype.mozMatchesSelector ||
   Element.prototype.msMatchesSelector ||
-  Element.prototype.oMatchesSelector;
+  Element.prototype.oMatchesSelector ||
+  function (selector) {
+    var matches = document.querySelectorAll(selector);
+
+    for (var i = 0; i < matches.length; i++) {
+      if (matches[i] === this) {
+        return true;
+      }
+    }
+
+    return false;
+  };
 
 /**
  * Accepts an element and selector and returns whether the selector matches the element.
