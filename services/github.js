@@ -57,7 +57,7 @@ class GithubFile {
     this.path = ghFile.path;
     this.size = ghFile.size;
     this.type = ghFile.type;
-    this.permalink = ghFile.html_url;
+    this.permalink = ghFile.html_url || ghFile.permalink;
     this.repo = repoId;
     if (ghFile.files) {
       this.files = ghFile.files;
