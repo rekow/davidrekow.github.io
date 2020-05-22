@@ -1,12 +1,16 @@
 {
-  "name": "david-rekow-node",
-  "private": true,
-  "description": "Personal website for David Rekow",
-  "version": "0.0.8",
+  "name": "davidrekow",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt generate"
+  },
   "dependencies": {
-    "express": "3.x",
-    "body-parser": "~1.0.1",
-    "gcloud": "^0.8.1",
-    "appengine" : "git://github.com/GoogleCloudPlatform/appengine-nodejs.git"
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/vuetify": "2.0.0-beta.2",
+    "axios": "^0.19.2",
+    "nuxt": "^2.12.2",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vuetify": "^2.2.29"
   }
 }
