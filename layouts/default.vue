@@ -48,4 +48,34 @@ body {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
+
+.page-hero {
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 5vh;
+
+  h1 {
+    font-size: 5em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+    font-weight: 400;
+  }
+
+  ul {
+    padding-left: 0 !important;
+  }
+
+  &> h1, &> h2, &> h3 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+    &+ h1, &+ h2, &+ h3 {
+      margin-top: 0;
+    }
+  }
+}
 </style>

@@ -109,6 +109,13 @@ export default {
     position: relative;
     cursor: pointer;
 
+    &> .v-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
     img {
       opacity: 0.65;
       display: block;
@@ -138,10 +145,8 @@ export default {
     }
   }
 
-  .gallery-see-more {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  .gallery-see-more .v-card {
+    @include center-center;
 
     a {
       text-decoration: none;

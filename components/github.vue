@@ -6,90 +6,99 @@
       :columns="4"
     >
       <template #gallery-item="{ item }">
-        <div class="gh-info">
-          <h4>
+        <v-card
+          dark
+          outlined>
+          <v-card-title>
             <v-icon
-              large
+              medium
               v-if="item.fork"
+              inline
             >
               mdi-source-fork
             </v-icon>
             <span>{{ item.name }}</span>
-          </h4>
-          <p class="gh-description">
-            <span>{{ item.description || "No description." }}</span>
+          </v-card-title>
+
+
+          <v-card-text>
+            {{ item.description || "(no description available)" }}
             <v-badge
               :content="item.language"
               inline
             >
             </v-badge>
-          </p>
-        </div>
-        <h5 class="gh-size">
-          <v-icon>mdi-folder</v-icon>
-          <span>{{ item.size }} files</span>
-        </h5>
-        <div class="gh-files">
-          <v-treeview
-            dense
-            open-on-click
-            transition
-            hoverable
-            expand-icon="mdi-chevron-down"
-            item-children="files"
-            item-key="sha"
-            :items="item.files"
-            :load-children="expandContent"
-          >
-            <template #prepend="{ item, open }">
-              <v-icon
-                v-if="item.type === 'dir'"
-                medium
-              >
-                {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
-              </v-icon>
-              <v-icon
-                v-else
-                medium
-              >
-                {{ iconForFile(item.name) }}
-              </v-icon>
-            </template>
+          </v-card-text>
 
-            <template #label="{ item }">
-              <v-hover #default="{ hover }">
-                <div>
-                  <span>{{item.name}}</span>
-                  <v-btn icon v-if="hover">
-                    <v-icon
-                      small
-                      @click="viewFile(item)"
-                    >
-                      mdi-launch
-                    </v-icon>
-                  </v-btn>
-                </div>
-              </v-hover>
-            </template>
-          </v-treeview>
-        </div>
-        <div class="gh-meta">
-          <v-icon small>mdi-source-fork</v-icon>
-          <span>{{ item.forks }}</span>
-          <v-icon small>mdi-star-outline</v-icon>
-          <span>{{ item.stars }}</span>
-          <v-icon small>mdi-eye-outline</v-icon>
-          <span>{{ item.watchers }}</span>
-        </div>
-        <div class="gh-launch">
-          <span class="gh-goto">
+          <v-divider />
+
+          <v-card-subtitle>
+            <v-icon>mdi-folder</v-icon>
+            <span>{{ item.size }} files</span>
+
+            <div class="float-right">
+              <v-icon small>mdi-source-fork</v-icon>
+              <span>{{ item.forks }}</span>
+              <v-icon small>mdi-star-outline</v-icon>
+              <span>{{ item.stars }}</span>
+              <v-icon small>mdi-eye-outline</v-icon>
+              <span>{{ item.watchers }}</span>
+            </div>
+          </v-card-subtitle>
+
+          <div class="gh-files">
+            <v-treeview
+              dense
+              open-on-click
+              transition
+              hoverable
+              expand-icon="mdi-chevron-down"
+              item-children="files"
+              item-key="sha"
+              :items="item.files"
+              :load-children="expandContent"
+            >
+              <template #prepend="{ item, open }">
+                <v-icon
+                  v-if="item.type === 'dir'"
+                  medium
+                >
+                  {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
+                </v-icon>
+                <v-icon
+                  v-else
+                  medium
+                >
+                  {{ iconForFile(item.name) }}
+                </v-icon>
+              </template>
+
+              <template #label="{ item }">
+                <v-hover #default="{ hover }">
+                  <div>
+                    <span>{{item.name}}</span>
+                    <v-btn icon v-if="hover">
+                      <v-icon
+                        small
+                        @click="viewFile(item)"
+                      >
+                        mdi-launch
+                      </v-icon>
+                    </v-btn>
+                  </div>
+                </v-hover>
+              </template>
+            </v-treeview>
+          </div>
+
+          <v-card-actions>
             <v-tooltip left>
               <template #activator="{ on }">
                 <v-btn
-                  icon
                   absolute
                   top
                   right
+                  icon
                   :href="item.permalink"
                   :target="'_blank'"
                   v-on="on"
@@ -99,17 +108,32 @@
               </template>
               <span>view on github</span>
             </v-tooltip>
-          </span>
-        </div>
-      </template>
+
+            <v-btn
+              :href="item.permalink"
+              :target="'_blank'"
+            >
+              view on github<v-icon small>mdi-arrow-right</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </template> <!-- end #gallery-item -->
 
       <template #see-more>
-        <a href="http://github.com/davidrekow" target="_blank">
+        <v-card
+          dark
+          outlined
+          hover
+          href="http://github.com/davidrekow"
+          target="_blank"
+        >
           <v-icon x-large>mdi-github</v-icon>
           see more on github
           <v-icon small>mdi-arrow-right</v-icon>
-        </a>
+        </v-card>
       </template>
+
+      </v-card>
     </Gallery>
   </div>
 </template>
@@ -177,41 +201,49 @@ export default {
   }
 
   .gallery-item {
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    flex-flow: column nowrap;
-    max-height: 30em;
+    background-color: inherit;
+    min-height: 55vh;
+    max-height: 80vh;
+
+    .v-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+
+      &> * {
+        flex: 0 auto;
+      }
+    }
   }
 
-  h4 {
+  .v-card__title {
     font-family: "Roboto Mono", monospace;
-    font-size: 1.5em;
-    margin-top: .25em;
-    margin-bottom: .5em;
+    word-break: break-word;
+    max-height: 8vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .v-icon {
+      margin-right: 5px;
+    }
   }
 
-  .gh-size {
-    background-color: rgba(0, 0, 0, 0.1);
+  .v-card__text {
+    height: 10vh;
   }
 
   .gh-files {
-    width: 100%;
+    min-height: 40vh;
+    flex: 1 1 0 !important;
+    overflow: hidden;
     overflow-y: scroll;
     background-color: rgba(255,255,255, 0.1);
-    flex: auto;
-  }
-
-  .gh-meta {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
   }
 
   span + i.v-icon,
   i.v-icon + span {
     vertical-align: middle;
-    line-height: 20px;
   }
 
   .gallery-see-more {

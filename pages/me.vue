@@ -1,6 +1,8 @@
 <template>
   <section class="page-content">
-    <h1>my gorgeous mug</h1>
+    <div class="page-hero">
+      <h1>my gorgeous mug</h1>
+    </div>
   </section>
 </template>
 

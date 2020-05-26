@@ -1,6 +1,8 @@
 <template>
   <section class="page-content">
-    <h1>things i've cooked, crafted, built or grown</h1>
+    <div class="page-hero">
+      <h1>things i've cooked, crafted, built or grown</h1>
+    </div>
   </section>
 </template>
 
