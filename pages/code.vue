@@ -39,10 +39,12 @@
           </ul>
         </div>
         <div>
-          <h3>build tooling</h3>
+          <h3>build/test tooling</h3>
           <ul>
             <li>make</li>
             <li>webpack (babel, gulp, grunt, rollup)</li>
+            <li>eslint (jslint, prettier)</li>
+            <li>mocha (karma, jest, jasmine, assert)</li>
             <li>maven</li>
           </ul>
         </div>

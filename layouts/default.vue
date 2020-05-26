@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <PageNav/>
-    <v-content class="main">
+    <v-content class="main" v-cloak>
       <v-container fluid>
         <nuxt/>
         <Instagram ref="insta"/>
