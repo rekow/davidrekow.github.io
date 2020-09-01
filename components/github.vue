@@ -159,7 +159,8 @@ const FILE_ICONS   = {
   makefile: 'mdi-wrench',
   dockerfile: 'mdi-docker',
   lua: 'mdi-language-lua',
-  rockspec: 'mdi-language-lua'
+  rockspec: 'mdi-language-lua',
+  vue: 'mdi-vue-js'
 };
 
 export default {

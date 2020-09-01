@@ -1,7 +1,7 @@
 import axios from 'axios';
 import storage from '~/services/storage';
 
-const TOKEN = "IGQVJVZA2tjMmUyM2l5bzRVamR4eFZATbnhvUE9aTnNOcjFaazJ3MzFHT25oTERpMGdCQmM3cWpGUXI1TnlFajFtUlExbFZAPa1BQa3kwMHowVDlfa3VHcFBjakt1b00yRldhT09pY2RB";
+const TOKEN = "IGQVJXcU9MWWtXRjV4enloenJRSldLZAEVfcmMyQnlHX0FJenpuTjh6RzBhQTVRYTJXcTV4X3pjZA3R1SzZAfZAjBTNGlxWHBiN3BEV2dQbzduOE9IMkdSdFoxVzhzRjlaajhDdzFFS05JNHhDMU1aLTZAOVwZDZD";
 const API = 'https://graph.instagram.com';
 const IG = 'ig';
 
